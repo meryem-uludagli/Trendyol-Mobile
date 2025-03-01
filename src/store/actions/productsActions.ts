@@ -1,11 +1,14 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {CATEGORIES_URLS} from '../../service/urls';
+import {PRODUCTS_URL} from '../../service/urls';
 import {getRequest} from '../../service/verbs';
 
 const getBestSellerProducts = createAsyncThunk(
   'products/getBestSellerProducts',
   async (params: object) => {
-    const response = await getRequest(params, CATEGORIES_URLS.CATEGORIES);
+    const response = await getRequest(
+      params,
+      PRODUCTS_URL.BEST_SELLER_PRODUCTS,
+    );
     return response.data;
   },
 );
