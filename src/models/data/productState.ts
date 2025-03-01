@@ -8,5 +8,7 @@ interface Product {
 }
 interface ProductsState {
   products: Product[];
+  bestSellerProducts: Product[];
+  popularProducts: Product[];
 }
 export type {ProductsState};
