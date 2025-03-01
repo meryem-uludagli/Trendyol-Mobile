@@ -14,6 +14,6 @@ export default WidgetHeader;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: 20,
   },
 });
