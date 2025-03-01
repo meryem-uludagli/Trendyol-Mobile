@@ -1,22 +1,16 @@
-import {useEffect} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {getRequest} from '../../service/verbs';
-import {PRODUCTS_URL} from '../../service/urls';
-const Home = () => {
-  useEffect(() => {
-    getRequest({}, PRODUCTS_URL.ALL_PRODUCTS)
-      .then(data => {
-        console.log(data.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+import Categories from '../../widgets/categories';
+
+const Home: React.FC<Props> = () => {
   return (
-    <SafeAreaView>
-      <Text>Home</Text>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Categories />
+      </View>
     </SafeAreaView>
   );
 };
 export default Home;
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {flex: 1},
+});
