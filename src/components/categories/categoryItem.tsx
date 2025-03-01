@@ -1,11 +1,12 @@
 import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {categoryItemProps} from '../../models/ui/categoryItemProps';
+import {Colors} from '../../theme/colors';
 
 const CategoryItem: React.FC<categoryItemProps> = ({category}) => {
   return (
     <Pressable style={styles.container}>
-      <Text style={{fontSize: 18}}>{category}</Text>
+      <Text style={{fontSize: 16}}>{category}</Text>
     </Pressable>
   );
 };
@@ -21,5 +22,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderWidth: 0.5,
     borderRadius: 100,
+    marginVertical: 10,
+    borderColor: Colors.GRAY,
   },
 });

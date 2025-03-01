@@ -12,7 +12,11 @@ import {TABNAVIGATOR} from '../../utils/routes';
 const TabIcon: React.FC<TabIconProps> = ({route, size, color, focused}) => {
   switch (route.name) {
     case TABNAVIGATOR.HOME:
-      return <Home size={size} color={color} />;
+      return focused ? (
+        <Home size={size} color={color} variant="Bold" />
+      ) : (
+        <Home size={size} color={color} />
+      );
     case TABNAVIGATOR.SEARCH:
       return <SearchNormal1 size={size} color={color} />;
     case TABNAVIGATOR.FAVORITES:
