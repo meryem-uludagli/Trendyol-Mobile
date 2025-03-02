@@ -1,13 +1,28 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './tabNavigator';
-import {TABNAVIGATOR} from '../utils/routes';
+import {PRODUCTSNAVIGATOR, TABNAVIGATOR} from '../utils/routes';
+import ProductList from '../screens/products';
+import ProductDetail from '../screens/products/productDetail';
 
 const Stack = createNativeStackNavigator();
 
 const RootNavigator: React.FC = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name={TABNAVIGATOR.TABNAVIGATOR} component={TabNavigator} />
+    <Stack.Navigator screenOptions={{headerBackTitle: 'Geri'}}>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={TABNAVIGATOR.TABNAVIGATOR}
+        component={TabNavigator}
+      />
+
+      <Stack.Screen
+        name={PRODUCTSNAVIGATOR.PRODUCTSLIST}
+        component={ProductList}
+      />
+      <Stack.Screen
+        name={PRODUCTSNAVIGATOR.PRODUCTDETAIL}
+        component={ProductDetail}
+      />
     </Stack.Navigator>
   );
 };

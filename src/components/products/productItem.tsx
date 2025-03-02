@@ -2,10 +2,15 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {ProductItemProps} from '../../models/ui/productItemProps';
 import {height, width} from '../../utils/constants';
 import {Colors} from '../../theme/colors';
+import {useNavigation} from '@react-navigation/native';
+import {PRODUCTSNAVIGATOR} from '../../utils/routes';
 
 const ProductItem: React.FC<ProductItemProps> = ({product}) => {
+  const navigation = useNavigation();
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTDETAIL)}
+      style={styles.container}>
       <Image
         source={{uri: product.image}}
         style={{
