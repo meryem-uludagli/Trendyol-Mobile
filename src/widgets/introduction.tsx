@@ -1,8 +1,13 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {height, width} from '../utils/constants';
-const Introduction = () => {
+import {useNavigation} from '@react-navigation/native';
+import {PRODUCTSNAVIGATOR} from '../utils/routes';
+const Introduction: React.FC = () => {
+  const navigation = useNavigation();
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSLIST)}
+      style={styles.container}>
       <Image
         source={require('../assets/images/Introduction.webp')}
         style={{
