@@ -1,6 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {PRODUCTS_URL} from '../../service/urls';
 import {getRequest} from '../../service/verbs';
+import {Params} from '../../models/data/productState';
 
 const getBestSellerProducts = createAsyncThunk(
   'products/getBestSellerProducts',
@@ -20,4 +21,13 @@ const getPopularProducts = createAsyncThunk(
     return response.data;
   },
 );
-export {getBestSellerProducts, getPopularProducts};
+
+const getProductDetail = createAsyncThunk(
+  'products/getProductDetail',
+  async (params: Params) => {
+    const productUrl = `${PRODUCTS_URL.ALL_PRODUCTS}/${params.id}`;
+    const response = await getRequest(params, productUrl);
+    return response.data;
+  },
+);
+export {getBestSellerProducts, getPopularProducts, getProductDetail};

@@ -4,8 +4,7 @@ import {Colors} from '../theme/colors';
 const defaultScreenStyle = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
   },
-  container: {padding: 10},
+  container: {flex: 1, padding: 10, backgroundColor: Colors.WHITE},
 });
 export {defaultScreenStyle};
