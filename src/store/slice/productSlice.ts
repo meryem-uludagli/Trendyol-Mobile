@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ProductsState} from '../../models/data/productState';
 import {
+  getAllProducts,
   getBestSellerProducts,
   getPopularProducts,
   getProductDetail,
@@ -19,6 +20,9 @@ export const productSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(getAllProducts.fulfilled, (state, action) => {
+        state.products = action.payload;
+      })
       .addCase(getBestSellerProducts.fulfilled, (state, action) => {
         state.bestSellerProducts = action.payload;
       })
