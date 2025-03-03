@@ -6,7 +6,11 @@ import {Params} from '../../models/data/productState';
 const getAllProducts = createAsyncThunk(
   'products/getAllProducts',
   async (params: object) => {
-    const response = await getRequest(params, PRODUCTS_URL.ALL_PRODUCTS);
+    const productsUrl =
+      params.category == 'Tümü'
+        ? PRODUCTS_URL.ALL_PRODUCTS
+        : `${PRODUCTS_URL.CATEGORY_PRODUCTS}/${params.category}`;
+    const response = await getRequest(params, productsUrl);
     return response.data;
   },
 );

@@ -14,12 +14,14 @@ const Categories: React.FC<Props> = ({navigation, route}) => {
     dispatch(getAllCategories({}));
   }, []);
   return (
-    <FlatList
-      showsHorizontalScrollIndicator={false}
-      horizontal
-      data={categories}
-      renderItem={({item}) => <CategoryItem category={item} />}
-    />
+    <View>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={categories}
+        renderItem={({item}) => <CategoryItem category={item} />}
+      />
+    </View>
   );
 };
 export default Categories;

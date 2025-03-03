@@ -9,10 +9,13 @@ import Categories from '../../widgets/categories';
 
 const ProductList: React.FC = () => {
   const {products} = useSelector((state: RootState) => state.products);
+  const {selectedCategory} = useSelector(
+    (state: RootState) => state.categories,
+  );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
+    dispatch(getAllProducts({category: selectedCategory}));
+  }, [selectedCategory]);
   return (
     <View style={defaultScreenStyle.container}>
       <Categories />
