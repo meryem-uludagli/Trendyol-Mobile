@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../theme/colors';
 import {RatingProps} from '../../models/ui/rateProps';
 
-const Rate: React.FC<RatingProps> = ({rating}) => {
+const Rate: React.FC<RatingProps> = ({rating, size}) => {
   const fullStar = Math.floor(rating.rate);
   const halfStar = rating.rate % 1 >= 0.5;
   const emptyStar = 5 - fullStar - (halfStar ? 1 : 0);
@@ -14,22 +14,33 @@ const Rate: React.FC<RatingProps> = ({rating}) => {
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <Text style={styles.rate}>{rating.rate}</Text>
+        <Text style={[styles.rate, {fontSize: size == 'large' ? 18 : 14}]}>
+          {rating.rate}
+        </Text>
         {Array(fullStar)
           .fill(null)
           .map((item, index) => (
             <Star1
               key={index}
-              size="20"
+              size={size == 'small' ? 15 : 20}
               color={Colors.PRIMARY}
               variant="Bold"
             />
           ))}
-        {halfStar && <Star1 size="20" color={Colors.PRIMARY} variant="Bulk" />}
+        {halfStar && (
+          <Star1
+            size={size == 'small' ? 15 : 20}
+            color={Colors.PRIMARY}
+            variant="Bulk"
+          />
+        )}
       </View>
-      <View style={{justifyContent: 'center'}}>
-        <Text style={styles.rate}>|{rating.count} Değelendirme</Text>
-      </View>
+
+      {size == 'large' && (
+        <View style={{justifyContent: 'center'}}>
+          <Text style={styles.rate}>|{rating.count} Değelendirme</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -42,7 +53,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   rate: {
-    fontSize: 20,
     fontWeight: 'bold',
   },
 });

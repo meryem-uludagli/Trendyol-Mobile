@@ -11,12 +11,15 @@ interface Product {
   description: string;
   image: string;
   rating: Rating;
+  isFavorite: boolean;
 }
 interface ProductsState {
   products: Product[];
   bestSellerProducts: Product[];
   popularProducts: Product[];
   product: Product;
+  pending: boolean;
+  error: any;
 }
 
 interface Params {

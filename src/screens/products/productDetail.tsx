@@ -15,6 +15,7 @@ import {defaultScreenStyle} from '../../styles/defaultScreenStyle';
 import {Colors} from '../../theme/colors';
 import Button from '../../components/ui/button';
 import Rate from '../../components/products/rate';
+import FavoritesButton from '../../components/favorites/favoritesButton';
 const ProductDetail: React.FC<Props> = ({route}) => {
   const {productId} = route.params;
   const {product} = useSelector((state: RootState) => state.products);
@@ -26,10 +27,11 @@ const ProductDetail: React.FC<Props> = ({route}) => {
     <SafeAreaView style={defaultScreenStyle.container}>
       <View style={{flex: 1}}>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <FavoritesButton product={product} />
           <Image source={{uri: product.image}} style={styles.image} />
           <Text style={styles.category}>{product.category}</Text>
           <Text style={styles.title}>{product?.title}</Text>
-          {product.rating && <Rate rating={product?.rating} />}
+          {product.rating && <Rate size="large" rating={product?.rating} />}
           <Text style={styles.description}>{product?.description}</Text>
         </ScrollView>
       </View>

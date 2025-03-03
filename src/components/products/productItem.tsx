@@ -4,6 +4,10 @@ import {height, width} from '../../utils/constants';
 import {Colors} from '../../theme/colors';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTSNAVIGATOR} from '../../utils/routes';
+import FavoritesButton from '../favorites/favoritesButton';
+import Rate from './rate';
+import FreeCargo from '../badges/freeCargo';
+import DisCount from '../badges/disCount';
 
 const ProductItem: React.FC<ProductItemProps> = ({product}) => {
   const navigation = useNavigation();
@@ -15,6 +19,7 @@ const ProductItem: React.FC<ProductItemProps> = ({product}) => {
         })
       }
       style={styles.container}>
+      <FavoritesButton product={product} />
       <Image
         source={{uri: product.image}}
         style={{
@@ -35,7 +40,7 @@ const ProductItem: React.FC<ProductItemProps> = ({product}) => {
         style={{fontSize: 14, color: Colors.PRIMARY, marginVertical: 5}}>
         {product.category}
       </Text>
-
+      {product.rating && <Rate size="small" rating={product?.rating} />}
       <Text
         numberOfLines={2}
         style={{
@@ -44,8 +49,13 @@ const ProductItem: React.FC<ProductItemProps> = ({product}) => {
           marginVertical: 5,
           color: Colors.PRIMARY,
         }}>
-        {product.price}
+        {product.price}TL
       </Text>
+
+      <View style={{flexDirection: 'row'}}>
+        <FreeCargo />
+        <DisCount />
+      </View>
     </Pressable>
   );
 };
