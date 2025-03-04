@@ -10,7 +10,10 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addCart: (state, action) => {
-      state.cart.push(action.payload);
+      const product = action.payload;
+      const exitingProduct = state.cart.find(item => item.id === product.id);
+      if (exitingProduct) exitingProduct.quantity += 1;
+      else state.cart.push({...product, quantity: 1});
     },
   },
 });
