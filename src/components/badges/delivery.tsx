@@ -1,16 +1,16 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../theme/colors';
-import {Box, DiscountShape} from 'iconsax-react-native';
+import {Box, Send2} from 'iconsax-react-native';
 
-const DisCount: React.FC = () => {
+const Delivery: React.FC = () => {
   return (
     <View style={styles.container}>
-      <DiscountShape size="22" color={Colors.PRIMARY} />
-      <Text style={styles.text}>2. Ürün Indirim</Text>
+      <Send2 size="22" color={Colors.GREEN} />
+      <Text style={styles.text}>Hizli Teslimat</Text>
     </View>
   );
 };
-export default DisCount;
+export default Delivery;
 const styles = StyleSheet.create({
   container: {
     alignContent: 'center',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     width: '25%',
     margin: 10,
     paddingVertical: 5,
-    backgroundColor: '#ffe3e3',
+    backgroundColor: '#bde8ca',
     borderRadius: 5,
   },
   text: {

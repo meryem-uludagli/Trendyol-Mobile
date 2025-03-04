@@ -8,6 +8,7 @@ import FavoritesButton from '../favorites/favoritesButton';
 import Rate from './rate';
 import FreeCargo from '../badges/freeCargo';
 import DisCount from '../badges/disCount';
+import Delivery from '../badges/delivery';
 
 const ProductItem: React.FC<ProductItemProps> = ({product}) => {
   const navigation = useNavigation();
@@ -55,6 +56,7 @@ const ProductItem: React.FC<ProductItemProps> = ({product}) => {
       <View style={{flexDirection: 'row'}}>
         <FreeCargo />
         <DisCount />
+        <Delivery />
       </View>
     </Pressable>
   );

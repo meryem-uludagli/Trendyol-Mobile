@@ -33,7 +33,13 @@ const TabNavigator: React.FC = () => {
       <Tab.Screen name={TABNAVIGATOR.HOME} component={Home} />
       <Tab.Screen name={TABNAVIGATOR.SEARCH} component={Search} />
       <Tab.Screen name={TABNAVIGATOR.FAVORITES} component={Favorites} />
-      <Tab.Screen name={TABNAVIGATOR.CART} component={Cart} />
+      <Tab.Screen
+        options={{
+          tabBarBadge: 0,
+        }}
+        name={TABNAVIGATOR.CART}
+        component={Cart}
+      />
       <Tab.Screen name={TABNAVIGATOR.PROFILE} component={Profile} />
     </Tab.Navigator>
   );

@@ -16,6 +16,10 @@ import {Colors} from '../../theme/colors';
 import Button from '../../components/ui/button';
 import Rate from '../../components/products/rate';
 import FavoritesButton from '../../components/favorites/favoritesButton';
+import FreeCargo from '../../components/badges/freeCargo';
+import DisCount from '../../components/badges/disCount';
+import Delivery from '../../components/badges/delivery';
+import {addCart} from '../../store/slice/cartSlice';
 const ProductDetail: React.FC<Props> = ({route}) => {
   const {productId} = route.params;
   const {product} = useSelector((state: RootState) => state.products);
@@ -33,6 +37,11 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           <Text style={styles.title}>{product?.title}</Text>
           {product.rating && <Rate size="large" rating={product?.rating} />}
           <Text style={styles.description}>{product?.description}</Text>
+          <View style={{flexDirection: 'row'}}>
+            <FreeCargo />
+            <DisCount />
+            <Delivery />
+          </View>
         </ScrollView>
       </View>
       <View style={styles.priceContainer}>
@@ -41,7 +50,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           <Text style={styles.info}>Kargo Bedava</Text>
         </View>
         <View style={{flex: 2, justifyContent: 'center'}}>
-          <Button />
+          <Button onPress={() => dispatch(addCart(product))} />
         </View>
       </View>
     </SafeAreaView>
