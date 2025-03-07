@@ -50,7 +50,10 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           <Text style={styles.info}>Kargo Bedava</Text>
         </View>
         <View style={{flex: 2, justifyContent: 'center'}}>
-          <Button onPress={() => dispatch(addCart(product))} />
+          <Button
+            title="Sepeti Ekle"
+            onPress={() => dispatch(addCart(product))}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -58,12 +61,6 @@ const ProductDetail: React.FC<Props> = ({route}) => {
 };
 export default ProductDetail;
 const styles = StyleSheet.create({
-  image: {
-    width: width,
-    height: height * 0.3,
-    resizeMode: 'contain',
-    marginVertical: 20,
-  },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -94,5 +91,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: Colors.PRIMARY,
+  },
+  image: {
+    width: width,
+    height: height * 0.3,
+    resizeMode: 'contain',
+    marginVertical: 20,
   },
 });
