@@ -1,30 +1,48 @@
-import {Heart} from 'iconsax-react-native';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../../theme/colors';
 import {width} from '../../utils/constants';
 import {ProductItemProps} from '../../models/ui/productItemProps';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../store';
-
-Heart;
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../../store';
+import {AUTHNAVIGATOR} from '../../utils/routes';
+import {addFavorite} from '../../store/slice/favoriteSlice';
+import {addFavoriteOther} from '../../store/slice/productSlice';
+import {Heart} from 'iconsax-react-native';
 const FavoritesButton: React.FC<ProductItemProps> = ({product}) => {
   const {isLogin} = useSelector((state: RootState) => state.auth);
+  const navigation = useNavigation();
+  const dispatch = useDispatch<AppDispatch>();
   const checklogin = () => {
     if (!isLogin) {
-      alert('Please login to add to favourites');
+      Alert.alert(
+        'Giriş Yap',
+        'Lütfen favorilere eklemeden önce giriş yapınız',
+        [
+          {
+            text: 'İptal',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'Giriş Yap',
+            onPress: () => navigation.navigate(AUTHNAVIGATOR.LOGIN),
+          },
+        ],
+      );
+    } else {
+      dispatch(addFavorite(product));
+      dispatch(addFavoriteOther(product));
     }
   };
   return (
     <TouchableOpacity onPress={checklogin} style={styles.container}>
-      {product.isFavorite ? (
-        <Heart size={20} color={Colors.PRIMARY} variant="Bold" />
-      ) : (
-        <Heart size={20} color={Colors.PRIMARY} />
-      )}
+      <Heart size={20} color={Colors.PRIMARY} />
     </TouchableOpacity>
   );
 };
-export default FavoritesButton;
+
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -32,9 +50,9 @@ const styles = StyleSheet.create({
     height: width * 0.072,
     justifyContent: 'center',
     alignItems: 'center',
-    right: 10,
-    top: 10,
     borderRadius: 100,
+    right: 5,
+    top: 5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -42,7 +60,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+
     elevation: 5,
     backgroundColor: Colors.WHITE,
   },
 });
+
+export default FavoritesButton;
