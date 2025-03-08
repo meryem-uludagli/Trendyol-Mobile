@@ -1,26 +1,36 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {Colors} from '../../theme/colors';
 import {height} from '../../utils/constants';
 import {ButtonProps} from '../../models/ui/buttonProps';
+
 const Button: React.FC<ButtonProps> = props => {
-  const {title} = props;
+  const {title, disabled, onPress} = props;
   return (
-    <TouchableOpacity {...props} style={styles.container}>
+    <TouchableOpacity
+      {...props}
+      onPressIn={onPress}
+      style={[
+        styles.container,
+        {backgroundColor: disabled ? Colors.GRAY : Colors.PRIMARY},
+      ]}>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
 };
-export default Button;
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.PRIMARY,
     minHeight: height * 0.047,
     borderRadius: 5,
+    margin: 5,
   },
   title: {
     fontSize: 18,
     color: Colors.WHITE,
   },
 });
+
+export default Button;
