@@ -1,8 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
-const Profile = () => {
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
+const Profile: React.FC = () => {
+  const {token} = useSelector((state: RootState) => state.auth);
   return (
     <View>
-      <Text>Profile</Text>
+      <Text style={{fontSize: 16}}>{token}</Text>
     </View>
   );
 };
