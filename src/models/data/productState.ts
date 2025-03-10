@@ -14,15 +14,15 @@ interface Product {
   isFavorite: boolean;
   quantity: 0;
 }
+
 interface ProductsState {
   products: Product[];
   bestSellerProducts: Product[];
-  popularProducts: Product[];
+  populerProducts: Product[];
   product: Product;
   pending: boolean;
   error: any;
 }
-
 interface Params {
   id: number;
 }
